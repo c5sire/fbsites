@@ -28,8 +28,8 @@ new_site_table <- function(){
 
   res <- as.data.frame(cbind(
     id, shortn, altern, fulln, local, latd, lond, elev, crops, aez,
-    cont, creg, cntry, adm4, adm3, adm2, adm1,  comment,
-    stringsAsFactors = FALSE))
+    cont, creg, cntry, adm4, adm3, adm2, adm1,  comment),
+    stringsAsFactors = FALSE)
   res
 }
 

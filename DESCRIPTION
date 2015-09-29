@@ -10,5 +10,8 @@ LazyData: true
 Suggests: testthat,
     knitr,
     rmarkdown,
-    fbglobal
+    fbglobal,
+    shiny,
+    shinydashboard,
+    rhandsontable
 VignetteBuilder: knitr
