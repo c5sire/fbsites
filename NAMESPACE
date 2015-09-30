@@ -3,4 +3,6 @@
 export(get_site_table)
 export(new_site_table)
 export(post_site_table)
+export(run_sites)
+export(server_site)
 export(ui_site)

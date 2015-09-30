@@ -5,7 +5,7 @@
 \title{shiny UI element}
 \usage{
 ui_site(type = "tab", title = "Site configuration",
-  name = "resource_site")
+  name = "resource_site", output = "hot_sites")
 }
 \arguments{
 \item{type}{of ui Element; default is a tab in a shiny dashboard}
@@ -13,6 +13,8 @@ ui_site(type = "tab", title = "Site configuration",
 \item{title}{display title}
 
 \item{name}{a reference name}
+
+\item{output}{name of output element}
 }
 \description{
 returns a re-usable user interface element
