@@ -9,10 +9,7 @@
 #' @param dom target dom element name
 #' @author Reinhard Simon
 #' @export
-server_site <- function(input, output, session, dom="hot_sites"){
-
-
-  values = shiny::reactiveValues()
+server_site <- function(input, output, session, dom="hot_sites", values = values){
   setHot_sites = function(x) values[[dom]] = x
 
   shiny::observe({
@@ -23,7 +20,7 @@ server_site <- function(input, output, session, dom="hot_sites"){
 
   })
 
-  output$hot_sites = rhandsontable::renderRHandsontable({
+  output[[dom]] = rhandsontable::renderRHandsontable({
     if (!is.null(input[[dom]])) {
       DF = rhandsontable::hot_to_r(input[[dom]])
     } else {

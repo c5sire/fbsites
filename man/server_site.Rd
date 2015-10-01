@@ -4,7 +4,7 @@
 \alias{server_site}
 \title{Server side logic}
 \usage{
-server_site(input, output, session, dom = "hot_sites")
+server_site(input, output, session, dom = "hot_sites", values = values)
 }
 \arguments{
 \item{input}{shinyserver input}

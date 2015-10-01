@@ -41,14 +41,15 @@ new_site_table <- function(){
 #' @export
 #' @return dataframe
 get_site_table <- function(){
+  fns <- fbglobal::fname_sites()
 
-  if(!file.exists(fbglobal::fname_sites())) {
-    base_dir <-  dirname(fbglobal::fname_sites())
+  if(!file.exists(fns)) {
+    base_dir <-  dirname(fns)
     if(!dir.exists(base_dir)) dir.create(base_dir)
     table_sites <- new_site_table()
-    save(table_sites, file = fbglobal::fname_sites())
+    save(table_sites, file = fns)
   }
-  load(fbglobal::fname_sites())
+  load(fns)
   table_sites
 }
 
