@@ -5,6 +5,9 @@ library(fbglobal)
 library(fbsites)
 
 tabNameS <- "resource_site"
+# data("iso_country")
+# continents = sort(unique(iso_country$continent))
+# cipregions = sort(unique(iso_country$cipregion))
 
 
 server <- function(input, output, session) {
