@@ -6,18 +6,28 @@ library(fbsites)
 
 tabNameS <- "resource_site"
 
+
 server <- function(input, output, session) {
   values = shiny::reactiveValues()
   fbsites::server_site(input, output, session, values = values)
 }
 
 ui <- dashboardPage(skin = "yellow",
-                    dashboardHeader(title = "Demo Program"),
-                    dashboardSidebar(
+                    dashboardHeader(title = "Demo Site"),
+                    dashboardSidebar(width = 350,
                       menuItem("Resources",
                        sidebarMenu(id = "menu",
                          menuSubItem("Site", icon = icon("location-arrow"),
                                      tabName = tabNameS)
+                         # ,
+                         # conditionalPanel(paste0("input.menu == '",tabNameS,"'"),
+                         #      checkboxGroupInput("continents", "Continents", continents)
+                         #
+                         # ),
+                         # conditionalPanel(paste0("input.menu == '",tabNameS,"'"),
+                         #      checkboxGroupInput("cipregions", "CIP regions", cipregions)
+                         #
+                         # )
                                   )
                       )
                     ),
