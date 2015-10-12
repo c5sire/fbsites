@@ -14,7 +14,7 @@ server_site <- function(input, output, session, dom="hot_sites", values){
 
   setHot_sites = function(x) values[[dom]] = x
 
-  data("iso_country")
+  iso_country <- fbsites::iso_country
   continents = sort(unique(iso_country$continent))
   cipregions = sort(unique(iso_country$cipregion))
   # dom_i <- paste0(dom,"_indices")
