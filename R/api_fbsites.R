@@ -45,7 +45,7 @@ get_site_table <- function(){
 
   if(!file.exists(fns)) {
     base_dir <-  dirname(fns)
-    if(!dir.exists(base_dir)) dir.create(base_dir)
+    if(!dir.exists(base_dir)) dir.create(base_dir, recursive = TRUE)
     table_sites <- new_site_table()
     save(table_sites, file = fns)
   }

@@ -5,10 +5,6 @@ library(fbglobal)
 library(fbsites)
 
 tabNameS <- "resource_site"
-# data("iso_country")
-# continents = sort(unique(iso_country$continent))
-# cipregions = sort(unique(iso_country$cipregion))
-
 
 server <- function(input, output, session) {
   values = shiny::reactiveValues()
@@ -22,16 +18,7 @@ ui <- dashboardPage(skin = "yellow",
                        sidebarMenu(id = "menu",
                          menuSubItem("Site", icon = icon("location-arrow"),
                                      tabName = tabNameS)
-                         # ,
-                         # conditionalPanel(paste0("input.menu == '",tabNameS,"'"),
-                         #      checkboxGroupInput("continents", "Continents", continents)
-                         #
-                         # ),
-                         # conditionalPanel(paste0("input.menu == '",tabNameS,"'"),
-                         #      checkboxGroupInput("cipregions", "CIP regions", cipregions)
-                         #
-                         # )
-                                  )
+                                   )
                       )
                     ),
                     dashboardBody(

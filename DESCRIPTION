@@ -2,12 +2,14 @@ Package: fbsites
 Title: Fieldbook Sites
 Version: 0.0.1
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: Helps maintain information about localities. Meant for being part of a bigger
- application on analyzing fieldbook data.
-Depends: R (>= 3.2.2)
+Description: Helps maintain information about localities. Meant for being part
+    of a bigger application on analyzing fieldbook data.
+Depends:
+    R (>= 3.2.2)
 License: GPL-3
 LazyData: true
-Suggests: testthat,
+Suggests:
+    testthat,
     knitr,
     rmarkdown,
     fbglobal,
@@ -16,3 +18,4 @@ Suggests: testthat,
     rhandsontable
 VignetteBuilder: knitr
 Encoding: UTF-8
+RoxygenNote: 5.0.0
