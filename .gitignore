@@ -3,3 +3,4 @@
 .RData
 inst/doc
 xdata
+packrat/lib*/

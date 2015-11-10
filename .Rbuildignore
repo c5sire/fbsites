@@ -6,3 +6,5 @@
 ^README-.*\.png$
 ^CONDUCT\.md$
 ^xdata
+^packrat/
+^\.Rprofile$
