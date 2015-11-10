@@ -1,6 +1,6 @@
-#' ISO country data with continents and CIP regions
+#' @name ISO country data with continents and CIP regions
 #'
-#' Contains world country names and classificatiosn
+#' @title Contains world country names and classificatiosn
 #'
 #' @format A data frame with 247 rows and 6 variables:
 #' \describe{
@@ -12,4 +12,5 @@
 #'   \item{cipregion}{to which CIP region the country belongs to}
 #' }
 #' @source \url{http://www.nationsonline.org/oneworld/country_code_list.htm}
-"iso_country"
+#' @docType data
+NULL
