@@ -1,13 +1,12 @@
 #' UI Side for adding new trial site in HIDAP
 #'
 #' Returns user friendly ui
+#'
 #' @author Omar Benites
 #' @param type type of UI element, deault is a tab in a shinydashboard
 #' @param title diaply title name
 #' @param name UI TabName
 #' @export
-#'
-
 addsite_ui <- function(type = "tab", title = "New Trial Site", name = "createList"){
 
   shinydashboard::tabItem(tabName = name,
