@@ -1,6 +1,6 @@
 Package: fbsites
 Title: Fieldbook Sites
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: c( 
              person("Reinhard", "Simon", email = "r.simon@cgiar.org", role = c("aut", "cre")),
              person("Omar", "Benites", email = "obacc07@gmail.com", role = c("ctb"))
