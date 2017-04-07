@@ -5,7 +5,6 @@
 #' @param input shinyserver input
 #' @param output shinyserver output
 #' @param session shinyserver session
-## @param dom target dom element name
 #' @param values reactive values
 #' @author Omar Benites
 #' @export
@@ -13,11 +12,12 @@
 #server_design <- function(input, output, session, dom="hot_fieldbook_design", values){
 
 server_addsite <- function(input, output, session, values){
+  #data("iso_country")
 
-  output$continent_addloc <- renderUI({
+  output$continent_addloc <- shiny::renderUI({
     #req(input$fbmlist_select_new)
     #Use of countrycode dataset and package for extracting continent data
-    continent_list <- unique(countrycode_data$continent)
+    continent_list <- unique(iso_country$continent)
     continent_list <- continent_list[!is.na(continent_list)]
     continent_list <- sort(continent_list)
 
@@ -31,10 +31,10 @@ server_addsite <- function(input, output, session, values){
     )
   })
 
-  output$country_addloc <- renderUI({
+  output$country_addloc <- shiny::renderUI({
 
    #create reactive values to store dataframe
-    values <- reactiveValues(geo_db = NULL)
+    values <- shiny::reactiveValues(geo_db = NULL)
 
 
     continent_header <- input$fbsites_continent
@@ -43,8 +43,9 @@ server_addsite <- function(input, output, session, values){
       country_list <- ""
 
     } else {
-      country_list <- filter(countrycode_data, continent == continent_header)
-      country_list <- select(country_list, country.name)
+      continent = NULL
+      country_list <- dplyr::filter(iso_country, continent == continent_header)
+      country_list <- dplyr::select_(country_list, "country")
     }
 
     shiny::selectizeInput(inputId ="fbsites_country", label = "Select Country",
@@ -56,39 +57,24 @@ server_addsite <- function(input, output, session, values){
     )
   })
 
-  observe({
+  shiny::observe({
 
     #After all this conditions has been made, the submit button will appear to save the information
-    toggleState("fbsites_submit", !is.null(input$fbsites_continent) && str_trim(input$fbsites_continent, side = "both")!= "" &&
-                                  !is.null(input$fbsites_country) && str_trim(input$fbsites_country, side = "both")!= "" &&
-                                  !is.null(input$fbsites_LocName) && str_trim(input$fbsites_LocName, side = "both") != "" &&
-                                  !is.null(input$fbsites_LocFull) && str_trim(input$fbsites_LocFull, side = "both") != "" &&
-                                  !is.null(input$fbsites_LocShort) && str_trim(input$fbsites_LocShort, side = "both")!="" &&
-                                  !is.null(input$fbsites_admin1) && str_trim(input$fbsites_admin1, side = "both")!="" &&
-                                  !is.null(input$fbsites_admin2) && str_trim(input$fbsites_admin2, side = "both")!="" &&
-                                  !is.null(input$fbsites_admin3) && str_trim(input$fbsites_admin3, side = "both")!=""
-
-    #                               !is.null(input$fbsites_grade_lat) && str_trim(input$fbsites_grade_lat, side = "both")!="" &&
-    #                               !is.null(input$fbsites_grade_lon) && str_trim(input$fbsites_grade_lon, side = "both")!="" &&
-    #
-    #                               !is.null(input$fbsites_minute_lon) && str_trim(input$fbsites_minute_lon, side = "both")!="" &&
-    #                               !is.null(input$fbsites_minute_lon) && str_trim(input$fbsites_minute_lon, side = "both")!="" &&
-    #                               !is.null(input$fbsites_minute_lon) && str_trim(input$fbsites_second_lon, side = "both")!="" &&
-    #                               !is.null(input$fbsites_minute_lon) && str_trim(input$fbsites_second_lat, side = "both")!=""
-    # #
+    shinyjs::toggleState("fbsites_submit", !is.null(input$fbsites_continent) && stringr::str_trim(input$fbsites_continent, side = "both")!= "" &&
+                                  !is.null(input$fbsites_country) && stringr::str_trim(input$fbsites_country, side = "both")!= "" &&
+                                  !is.null(input$fbsites_LocName) && stringr::str_trim(input$fbsites_LocName, side = "both") != "" &&
+                                  !is.null(input$fbsites_LocFull) && stringr::str_trim(input$fbsites_LocFull, side = "both") != "" &&
+                                  !is.null(input$fbsites_LocShort) && stringr::str_trim(input$fbsites_LocShort, side = "both")!="" &&
+                                  !is.null(input$fbsites_admin1) && stringr::str_trim(input$fbsites_admin1, side = "both")!="" &&
+                                  !is.null(input$fbsites_admin2) && stringr::str_trim(input$fbsites_admin2, side = "both")!="" &&
+                                  !is.null(input$fbsites_admin3) && stringr::str_trim(input$fbsites_admin3, side = "both")!=""
                )
   })
-  #geo_db <- reactive({
-    #db <- readRDS(file = "sites_table.rds")
-
   shiny::observe({
       path <- fbglobal::get_base_dir()
-      #print(path)
       geodb_file <- "table_sites.rds"
       path <- file.path(path, geodb_file)
       values$geo_db <-  readRDS(file = path)
-#     values$geo_db <-  readRDS(file = "sites_table.rds")
-
   })
 
 
@@ -100,9 +86,9 @@ server_addsite <- function(input, output, session, values){
     # cntry <- fbsites::get_country_list(sites_data =  values$geo_db)
     # print(cntry)
 
-    withProgress(message = 'Saving the new locality...', value = 0, {
+    shiny::withProgress(message = 'Saving the new locality...', value = 0, {
 
-    incProgress(3/15)
+      shiny::incProgress(3/15)
     # use the reactive geo_db data
     #geo_db_data <- geo_db()
 
@@ -183,12 +169,12 @@ server_addsite <- function(input, output, session, values){
 
   #Appear two conditions
 
-  print(values$geo_db)
-  print(values$geo_db[,"shortn"][[1]])
-        print(values$geo_db[,"local"][[1]])
-              print(values$geo_db[,"fulln"][[1]])
-
-  print(lgeovar)
+  # print(values$geo_db)
+  # print(values$geo_db[,"shortn"][[1]])
+  #       print(values$geo_db[,"local"][[1]])
+  #             print(values$geo_db[,"fulln"][[1]])
+  #
+  # print(lgeovar)
 
       #first condition
       if( is.element(lgeovar$shortn, values$geo_db[,"shortn"][[1]] )){
@@ -222,7 +208,7 @@ server_addsite <- function(input, output, session, values){
           geodb_file <- "table_sites.rds"
           #path <- paste(path, geodb_file, sep = "\\")
 
-          path <- file.path(path, geodb)
+          path <- file.path(path, geodb_file)
 
           saveRDS(values$geo_db, file = path)
 
@@ -232,31 +218,6 @@ server_addsite <- function(input, output, session, values){
 
           shinyjs::reset("geo-panel")
 
-          #shinyjs::reset("geo-panel")
-          #Reset all geo_variables in shiny UI
-          # reset("fbsites_continent")
-          # reset("fbsites_country")
-          # reset("fbsites_cipregion")
-          # reset("fbsites_admin1")
-          # reset("fbsites_admin2")
-          # reset("fbsites_admin3")
-          # reset("fbsites_admin4")
-          # reset("fbsites_LocName")
-          # reset("fbsites_LocFull")
-          # reset("fbsites_LocShort")
-          # reset("fbsites_latitude")
-          # reset("fbsites_longitude")
-          # reset("fbsites_elevation")
-          #
-          # reset("fbsites_grade_long")
-          # reset("fbsites_minute_long")
-          # reset("fbsites_second_long")
-          # reset("fbsites_orientation_long")
-          # reset("fbsites_grade_lat")
-          # reset("fbsites_minute_lat")
-          # reset("fbsites_second_lat")
-          # reset("fbsites_orientation_lat")
-          # reset("fbDesign_countryTrial")
 
       }
 
@@ -266,9 +227,9 @@ server_addsite <- function(input, output, session, values){
 
 
   shiny::observeEvent(input$fbsites_refreshpage, {
-    withProgress(message = 'Refreshing HiDAP to update internal tables...', value = 0, {
+    shiny::withProgress(message = 'Refreshing HiDAP to update internal tables...', value = 0, {
 
-      incProgress(3/15)
+      shiny::incProgress(3/15)
       shinyjs::js$refresh()
 
     })

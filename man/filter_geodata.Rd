@@ -9,8 +9,7 @@ filter_geodata(sites_data, country_input, trial_site_abbr)
 \arguments{
 \item{sites_data}{The master trial sites dataset}
 
-\item{country_input}{the input country-value using selectrizeInput
-Function to get the whole list of countries from CIP trial tites}
+\item{country_input}{the input country-value using selectrizeInput}
 
 \item{trial_site_abbr}{Trial site abbreviation}
 }
@@ -18,8 +17,8 @@ Function to get the whole list of countries from CIP trial tites}
 vector
 }
 \description{
-This function gives the geographical information
+Function to get the whole list of countries from CIP trial tites
 }
 \author{
-Omar Benites
+Omar Benites, Reinhard Simon
 }

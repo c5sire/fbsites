@@ -30,6 +30,7 @@ get_filter_locality <- function(sites_data,country_input){
   #dplyr::filter(.,CNTRY==country_input)
   #rule <- ~cntry == country_input
   #filter_country_locality <- dplyr::filter_(sites_data,rule)
+  cntry <- NULL
   filter_country_locality <- dplyr::filter(sites_data, cntry == country_input)
   filter_sites <- filter_country_locality
   #fullname <- stringr::str_trim(filter_sites$fulln,side = "both")
@@ -51,12 +52,13 @@ get_filter_locality <- function(sites_data,country_input){
 
 #' Get the geographical information from CIP trial sites
 #'
-#' @author Omar Benites
+#' Function to get the whole list of countries from CIP trial tites
+#'
+#' @author Omar Benites, Reinhard Simon
 #' @param sites_data The master trial sites dataset
 #' @param country_input the input country-value using selectrizeInput
-#' Function to get the whole list of countries from CIP trial tites
 #' @param trial_site_abbr Trial site abbreviation
-#' @description This function gives the geographical information
+#' @importFrom magrittr '%>%'
 #' @export
 #' @return vector
 #'
@@ -69,8 +71,10 @@ filter_geodata <- function(sites_data,country_input,trial_site_abbr){
                                              'cont','creg','cntry','adm4','adm3',
                                              'adm2','adm1') %>%
     #dplyr::filter(.,CNTRY==country_input)  %>%
-    dplyr::filter(.,cntry==country_input)  %>%
+    cntry <- NULL
+    shortn <- NULL
+    dplyr::filter(".", cntry== country_input)  %>%
     #dplyr::filter(.,LOCAL==trail_site)
     #dplyr::filter(.,FULLN==trail_site)
-    dplyr::filter(.,shortn==trial_site_abbr)
+    dplyr::filter(".", shortn == trial_site_abbr)
 }

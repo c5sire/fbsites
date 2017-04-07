@@ -1,6 +1,6 @@
 Package: fbsites
 Title: Fieldbook Sites
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: c( 
              person("Reinhard", "Simon", email = "r.simon@cgiar.org", role = c("aut", "cre")),
              person("Omar", "Benites", email = "obacc07@gmail.com", role = c("ctb"))
@@ -10,6 +10,7 @@ Depends:
     R (>= 3.2.2)
 License: GPL-3
 LazyData: true
+Imports: magrittr
 Suggests:
     dplyr,
     testthat,
@@ -23,9 +24,7 @@ Suggests:
     shinyjs,
     shinysky,
     countrycode,
-    data.table,
-    magrittr,
-    countrycode
+    data.table
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 6.0.1

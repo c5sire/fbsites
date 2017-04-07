@@ -1,6 +1,8 @@
-#' @name ISO country data with continents and CIP regions
+#' @name ISO_country
 #'
-#' @title Contains world country names and classificatiosn
+#' @title ISO country data with continents and CIP regions
+#'
+#' @description Contains world country names and classificatiosn
 #'
 #' @format A data frame with 247 rows and 6 variables:
 #' \describe{
