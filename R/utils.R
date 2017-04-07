@@ -1,5 +1,4 @@
 
-
 #' Convertion to sexagesimal to decimal
 #'
 #' Returns the convertion of sexagesimal system to decimal system.
@@ -19,3 +18,4 @@ seg2dec <- function(grade = 0, minute = 0, second = 0){
   total <- round(total,5) #need 5 decimal values.
   return(total)
 }
+

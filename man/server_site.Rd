@@ -4,7 +4,7 @@
 \alias{server_site}
 \title{Server side logic}
 \usage{
-server_site(input, output, session, dom = "hot_sites", values)
+server_site(input, output, session, values)
 }
 \arguments{
 \item{input}{shinyserver input}
@@ -13,9 +13,9 @@ server_site(input, output, session, dom = "hot_sites", values)
 
 \item{session}{shinyserver session}
 
-\item{dom}{target dom element name}
-
 \item{values}{reactive values}
+
+\item{dom}{target dom element name}
 }
 \description{
 Constructs table

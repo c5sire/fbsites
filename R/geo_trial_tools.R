@@ -24,8 +24,8 @@ get_country_list <- function(sites_data){
 #'
 get_filter_locality <- function(sites_data,country_input){
 
-  #   filter_country_locality <-  dplyr::select_(data_sites,"SHORTN","FULLN","LOCAL","LATD","LOND","ELEV",
-  #                                              "CROPS","AEZ","CONT","CREG","CNTRY","ADM4","ADM3","ADM2","ADM1") %>%
+#   filter_country_locality <-  dplyr::select_(data_sites,"SHORTN","FULLN","LOCAL","LATD","LOND","ELEV",
+#                                              "CROPS","AEZ","CONT","CREG","CNTRY","ADM4","ADM3","ADM2","ADM1") %>%
 
   #dplyr::filter(.,CNTRY==country_input)
   #rule <- ~cntry == country_input

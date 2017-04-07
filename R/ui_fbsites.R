@@ -12,14 +12,14 @@ ui_site <- function(type = "tab", title = "List of trial sites", name = "resourc
                     output = "hot_sites"){
   # just only one type
   shinydashboard::tabItem(tabName = name,
-                          shiny::fluidRow(
-                            #box(plotOutput("plot1", height = 250)),
+            shiny::fluidRow(
+            #box(plotOutput("plot1", height = 250)),
 
-                            shinydashboard::box(width = 12,
-                                                title = title,
-                                                #rhandsontable::rHandsontableOutput(output, height = 600)
-                                                rhandsontable::rHandsontableOutput("tbl_sites", height = 600)
-                            )
-                          )
+            shinydashboard::box(width = 12,
+                title = title,
+                #rhandsontable::rHandsontableOutput(output, height = 600)
+                rhandsontable::rHandsontableOutput("tbl_sites", height = 600)
+            )
+          )
   )
 }
